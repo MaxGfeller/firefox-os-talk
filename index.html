@@ -1,0 +1,287 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>Introduction to Firefox OS</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=792, user-scalable=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link rel="stylesheet" href="shower/themes/ribbon/styles/screen.css">
+</head>
+<body class="list">
+	<header class="caption">
+		<h1>Introduction to Firefox OS</h1>
+		<p>Max Gfeller, cyon GmbH</p>
+	</header>
+	<section class="slide cover" id="Cover"><div>
+		<h2>Firefox OS - An Introduction (for Developers)</h2>
+		<!-- <p>By Max Gfeller, cyon GmbH</p> -->
+		<img src="pictures/firefoxos-mwc.jpg" alt="">
+		<!--
+			To apply styles to the certain slides
+			set slide ID to get needed elements
+			-->
+		<style>
+			#Cover h2 {
+				margin:30px 0 0;
+				color:#FFF;
+				text-align:center;
+				font-size:70px;
+    			text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+				}
+			#Cover p {
+				margin: 10px 0 0;
+				text-align: center;
+				color: #FFF;
+				font-style: italic;
+				font-size: 24px;
+				position: absolute;
+				bottom: 0;
+				right: 0;
+				text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+				}
+				#Cover p a {
+					color: #FFF;
+				}
+			.diagram-container {
+
+			}
+
+			.diagram-container .diagram-entry {
+				min-width: 80px;
+				width: 800px;
+				background-color: #9999ff;
+				margin-bottom: 20px;
+				padding: 5px;
+				border-radius: 8px;
+				font-size: 12pt;
+				color: #444;
+			}
+
+			.diagram-container .diagram-entry .title {
+				font-size: 18pt;
+				color: #111;
+			}
+		</style>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>About me</h2>
+
+		<ul>
+			<li><a href="https://twitter.com/mgfeller">@mgfeller</a></li>
+			<li>Works for <a href="https://cyon.ch">Cyon</a></li>
+			<li>Not affiliated with Mozilla</li>
+			<li>Like the ideas behind FirefoxOS</li>
+			<li><a href="http://maxgfeller.com">maxgfeller.com</a></li>
+		</ul>
+	</div></section>
+
+	<section class="slide" id="available-devices"><div>
+		<h2>Available Devices</h2>
+
+		<div class="geeksphone-products">
+			<img src="pictures/peakplus.jpg">
+			<img src="pictures/peak.jpg">
+			<img src="pictures/keon.jpg">
+		</div>
+
+		<div class="description">Available on <a href="http://shop.geeksphone.com/en/">http://shop.geeksphone.com/en/</a></div>
+
+		<div class="commercial-products">
+			<img src="pictures/alcatel-one-touch-fire.jpg">
+			<img src="pictures/zte-open.jpg">
+			<br>
+			<div class="description">Alcatel One Touch Fire</div>
+			<div class="description">ZTE Open</div>
+		</div>
+
+		<style type="text/css">
+			#available-devices img {
+				border: none;
+			}
+			#available-devices .geeksphone-products img {
+				width: 60px;
+				height: 120px;
+				border: none;
+			}
+
+			.commercial-products .description {
+				float: left;
+				margin-right: 50px;
+			}
+		</style>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Architecture</h2>
+
+		<div class="diagram-container">
+			<div class="diagram-entry">
+				<div class="title">Gaia</div>
+				The user interface for Firefox OS. Homescreen, Lockscreen etc. Completely written in HTML, CSS, JavaScript. Only interface to the Gecko layer are open Web APIs.
+			</div>
+			<div class="diagram-entry">
+				<div class="title">Gecko</div>
+				Networking stack, graphics stack, layout engine, JavaScript virtual machine etc.
+			</div>
+			<div class="diagram-entry">
+				<div class="title">Gonk</div>
+				Linux Kernel, Hardware Abstraction Layer (HAL)
+			</div>
+		</div>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Packaged Apps and Open Web Apps</h2>
+		<h3><code>type: privileged</code></h3>
+		Use of certain APIs, approved by an app store, resources are signed by the app store
+		<h3><code>type: certified</code></h3>
+		Critical system function like dialer, or system settings app. Must be approved by carrier or OEM
+		<h3><code>type: web</code></h3>
+		Packaged web sites, no use of special APIs
+	</div></section>
+
+	<section class="slide" id="manifest"><div>
+		<h2>Manifest</h2>
+
+		<pre>
+<code>{</code>
+<code>  "name": "My App",</code>
+<code>  "description": "My elevator pitch goes here",</code>
+<code>  "launch_path": "/",</code>
+<code>  "icons": {</code>
+<code>    "128": "/img/icon-128.png"</code>
+<code>  },</code>
+<code>  "developer": {</code>
+<code>    "name": "Your name or organization",</code>
+<code>    "url": "http://your-homepage-here.org"</code>
+<code>  },</code>
+<code>  "default_locale": "en"</code>
+<code>}</code>
+		</pre>
+
+		<a href="https://developer.mozilla.org/en-US/docs/Web/Apps/Manifest">https://developer.mozilla.org/en-US/docs/Web/Apps/Manifest</a>
+		<style type="text/css">
+		#manifest pre code {
+			font-size: 12pt;
+			line-height: 20px;
+		}
+	</style>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Open Web APIs 1/2</h2>
+		Documented on <a href="https://wiki.mozilla.org/WebAPI">https://wiki.mozilla.org/WebAPI</a>
+		<br><b>Examples:</b><br>
+		WebTelephony, Vibration API, WebSMS, Idle API, Screen Orientation, SettingsAPI, Power Management API, Mobile Connection API, TCP Socket API, Geolocation API, WiFi Information API, Device Storage API, Contacts API, Open WebApps, WebBluetooth, BatteryStatus API, Alarm API, Push Notifications API, IndexedDB, Proximity Sensor and many more...
+	</div></section>
+
+	<section class="slide" id="api-example"><div>
+		<h2>Open Web APIs 2/2</h2>
+		<b>Example:</b><br>
+		<pre>
+<code>var contact = new mozContact();</code>
+<code>contact.init({name: "John Doe", givenName: "John", familyName: "Doe"});</code>
+<code></code>
+<code>var request = navigator.mozContacts.save(contact);</code>
+<code><br></code>
+<code>request.onsuccess = function() {</code>
+<code>   alert("Success saving contact. New contact ID: " + contact.id);</code>
+<code>};</code>
+<code><br></code>
+<code>request.onerror = function() {</code>
+<code>   alert("Error saving contact.");</code>
+<code>};</code>
+</pre>
+
+	<style type="text/css">
+		#api-example pre code {
+			font-size: 12pt;
+			line-height: 20px;
+		}
+	</style>
+	</div></section>
+
+	<section class="slide" id="web-activities"><div>
+		<h2>Web Activities</h2>
+
+		<h3><b>Handle an activity</b></h3>
+
+		<pre>
+<code>"activities": {</code>
+<code>   "share": {</code>
+<code>     "filters": {</code>
+<code>       type: ["image/png", "image/gif"],</code>
+<code>      }</code>
+<code>     "href": "foo.html",</code>
+<code>     "disposition": "window"</code>
+<code>   }</code>
+<code>}</code>
+		</pre>
+
+		<h3><b>Launch an activity</b></h3>
+
+		<pre>
+<code>var a = new Activity({ name: "pick", data: { type: "image/png", multiple: false }});</code>
+<code>a.onsuccess = function() { var image = a.result; doSomethingWithImage(image); });</code>
+<code>a.onerror = function() { alert("Failure when trying to pick an image!"); });</code>
+		</pre>
+
+		<style type="text/css">
+		#web-activities pre code {
+			font-size: 12pt;
+			line-height: 20px;
+		}
+	</style>
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Push Notifications</h2>
+
+		<ul>
+			<li>No Polling</li>
+			<li class="next">App registers for push endpoint</li>
+			<li class="next">Application server can make HTTP request to push endpoint</li>
+			<li class="next">No Payload</li>
+			<li class="next">If app is not running it will be started in background</li>
+		</ul>
+
+		<a class="next" href="https://hacks.mozilla.org/2013/07/dont-miss-out-on-the-real-time-fun-use-firefox-os-push-notifications/">https://hacks.mozilla.org/2013/07/dont-miss-out-on-the-real-time-fun-use-firefox-os-push-notifications/</a>
+
+	</div></section>
+
+	<section class="slide"><div>
+		<h2>Writing Firefox OS Apps</h2>
+
+		<ul>
+			<li><a href="https://github.com/robnyman/Firefox-OS-Boilerplate-App">https://github.com/robnyman/Firefox-OS-Boilerplate-App</a></li>
+			<li class="next">Write an app in HTML5, CSS3, JavaScript</li>
+			<li class="next">Make use of Open Web APIs</li>
+			<li class="next">Make sure you have a manifest.webapp</li>
+			<li class="next">Provide an offline.appcache file</li>
+			<li class="next">Submit your app: <a href="https://marketplace.firefox.com/developers/submit/">https://marketplace.firefox.com/developers/submit/</a></li>
+		</ul>
+	</div></section>
+
+	<section class="slide" id="demo"><div>
+		<h2>Demo</h2>
+
+		<style type="text/css">
+			#demo h2 {
+				font-size: 200px;
+			}
+		</style>
+	</div></section>
+
+	
+	
+	<!--
+		To hide progress bar from entire presentation
+		just remove “progress” element.
+		-->
+	<div class="progress"><div></div></div>
+	<script src="shower/shower.min.js"></script>
+	<!-- Copyright © 2013 Yours Truly, Famous Inc. -->
+	<!-- Photos by John Carey, fiftyfootshadows.net -->
+</body>
+</html>
